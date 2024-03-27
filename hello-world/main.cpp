@@ -1,8 +1,10 @@
 #include <iostream>
 #include <vector>
 #include <random>
+#include <tracy/Tracy.hpp>
 
 std::vector<std::vector<float>> random_matrix(int rows, int cols) {
+    ZoneScoped;
     std::vector<std::vector<float>> matrix(rows, std::vector<float>(cols));
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -18,6 +20,8 @@ std::vector<std::vector<float>> random_matrix(int rows, int cols) {
 }
 
 std::vector<std::vector<float>> matrix_multiply(const std::vector<std::vector<float>>& matrix1, const std::vector<std::vector<float>>& matrix2) {
+    ZoneScoped;
+
     int m = matrix1.size();
     int n = matrix1[0].size();
     int p = matrix2[0].size();
@@ -25,6 +29,7 @@ std::vector<std::vector<float>> matrix_multiply(const std::vector<std::vector<fl
     std::vector<std::vector<float>> result(m, std::vector<float>(p, 0));
 
     for (int i = 0; i < m; ++i) {
+        ZoneScoped;
         for (int j = 0; j < p; ++j) {
             for (int k = 0; k < n; ++k) {
                 result[i][j] += matrix1[i][k] * matrix2[k][j];

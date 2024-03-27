@@ -6,7 +6,8 @@ main:
 	$(CXX) $(CXXFLAGS) -flto ./main.cpp -o main
 
 tracy: TracyClient.o
-	$(CXX) $(CXXFLAGS) -flto ./main.cpp TracyClient.o -o main
+	$(CXX) $(CXXFLAGS) -flto ./main.cpp TracyClient.o -o main \
+		-DTRACY_ENABLE=1 -I$(TRACY_ROOT)/public/
 
 
 TracyClient.o: $(TRACY_ROOT)/public/TracyClient.cpp
