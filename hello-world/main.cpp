@@ -43,10 +43,17 @@ std::vector<std::vector<float>> matrix_multiply(const std::vector<std::vector<fl
 int main() {
     std::cout << "Hello World" << std::endl;
 
+    FrameMarkStart("init 1");
     auto matrix1 = random_matrix(1000, 1000);
-    auto matrix2 = random_matrix(1000, 1000);
+    FrameMarkEnd("init 1");
 
+    FrameMarkStart("init 2");
+    auto matrix2 = random_matrix(1000, 1000);
+    FrameMarkEnd("init 2");
+
+    FrameMarkStart("multiply");
     auto result = matrix_multiply(matrix1, matrix2);
+    FrameMarkEnd("multiply");
 
     return 0;
 }
