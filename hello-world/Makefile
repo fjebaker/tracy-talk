@@ -1,6 +1,6 @@
 TRACY_ROOT=../../tracy
 
-CXXFLAGS=-O2 -march=native -Wall
+CXXFLAGS=-O2 -march=native -Wall -g -fno-omit-frame-pointer
 
 main:
 	$(CXX) $(CXXFLAGS) -flto ./main.cpp -o main
